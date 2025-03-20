@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weddings - Photography Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        overflow-x: hidden;
+        background-color: #f8f8f8;
+      }
+
+      .navbar {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 60px;
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        margin-left: 500px;
+        gap: 10px;
+      }
+
+      .nav-links li {
+        margin: 0;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: yellow;
+      }
+
+      .social-icons {
+        display: flex;
+        align-items: center;
+        margin-right: 200px;
+        gap: 15px;
+        margin-right: 10px;
+      }
+
+      .social-icons a {
+        color: white;
+        font-size: 18px;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .social-icons a:hover {
+        color: yellow;
+      }
+
+      .contact-btn {
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+        padding: 8px 80px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .contact-btn:hover {
+        background-color: white;
+        color: black;
+      }
+
+      .Photography {
+        display: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        .Photography {
+          display: block;
+        }
+        .nav-links,
+        .social-icons,
+        .contact-btn {
+          display: none;
+        }
+      }
+
+      .wedding-gallery {
+        margin-top: 100px;
+        padding: 20px;
+      }
+
+      .gallery-title {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 40px;
+        color: #333;
+      }
+
+      .gallery-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .gallery-item {
+        flex: 1 0 45%;
+        max-width: 650px;
+        height: 500px;
+        overflow: hidden;
+        position: relative;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+
+      .project-details {
+        padding: 60px 20px;
+        background-color: #fff;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .details-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+      }
+
+      .details-left {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .details-right {
+        width: 300px;
+      }
+
+      .details-left h2 {
+        font-size: 36px;
+        margin: 0 0 10px 0;
+        color: #333;
+      }
+
+      .subtitle {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 25px;
+      }
+
+      .description {
+        margin-bottom: 30px;
+        line-height: 1.6;
+        color: #666;
+      }
+
+      .services-list {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 40px;
+      }
+
+      .services-list li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 10px;
+        color: #555;
+      }
+
+      .services-list li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #555;
+      }
+
+      .accordion-section {
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .accordion-item {
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .accordion-item:last-child {
+        border-bottom: none;
+      }
+
+      .accordion-header {
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .accordion-header h3 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      .accordion-icon {
+        color: #777;
+        transition: transform 0.3s;
+      }
+
+      .share-button {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #f5f5f5;
+        border-radius: 30px;
+        margin-bottom: 40px;
+        cursor: pointer;
+      }
+
+      .share-button span {
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      .project-info {
+        margin-bottom: 40px;
+      }
+
+      .info-item {
+        display: flex;
+        margin-bottom: 25px;
+      }
+
+      .info-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #f5f5f5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+      }
+
+      .info-icon i {
+        color: #555;
+        font-size: 16px;
+      }
+
+      .info-content h4 {
+        margin: 0 0 5px 0;
+        font-size: 14px;
+        color: #777;
+      }
+
+      .info-content p {
+        margin: 0;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .social-share {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-share a {
+        width: 40px;
+        height: 40px;
+        background-color: #f5f5f5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #555;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .social-share a:hover {
+        background-color: #333;
+        color: white;
+      }
+
+      .footer {
+        background-color: #222;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">Jevelin</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="weddings.html">Portfolio</a></li>
+      </ul>
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+      </div>
+      <button class="contact-btn">Contact me</button>
+      <div class="Photography" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <section class="wedding-gallery">
+      <h1 class="gallery-title">WEDDINGS</h1>
+
+      <div class="gallery-container">
+        <div class="gallery-item">
+          <img src="Wedding photo 1.jpg" alt="Wedding couple portrait" />
+        </div>
+        <div class="gallery-item">
+          <img src="Wedding photo 2.jpg" alt="Wedding detail shot" />
+        </div>
+      </div>
+    </section>
+
+    <section class="project-details">
+      <div class="container">
+        <div class="details-content">
+          <div class="details-left">
+            <h2>Weddings</h2>
+            <p class="subtitle">
+              Drops of rain could be heard hitting the pane.
+            </p>
+
+            <div class="description">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+                dapibus porttitor eros vitae molestie, consectetur urna id,
+                dapibus nulla. Suspendisse potenti. Proin ullamcorper nulla vel
+                est condimentum bibendum. Phasellus sollicitudin.
+              </p>
+            </div>
+
+            <ul class="services-list">
+              <li>Brainstorming</li>
+              <li>Designing</li>
+              <li>Building</li>
+              <li>Presenting</li>
+            </ul>
+
+            <div class="accordion-section">
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  <h3>Materials</h3>
+                  <span class="accordion-icon">&#9662;</span>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  <h3>Stages</h3>
+                  <span class="accordion-icon">&#9662;</span>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  <h3>Foundation</h3>
+                  <span class="accordion-icon">&#9662;</span>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  <h3>Packaging</h3>
+                  <span class="accordion-icon">&#9662;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="details-right">
+            <div class="share-button">
+              <span>SHARE</span>
+            </div>
+
+            <div class="project-info">
+              <div class="info-item">
+                <div class="info-icon">
+                  <i class="fas fa-building"></i>
+                </div>
+                <div class="info-content">
+                  <h4>Client</h4>
+                  <p>Corporation inc.</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <i class="fas fa-calendar"></i>
+                </div>
+                <div class="info-content">
+                  <h4>Year</h4>
+                  <p>2020</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <i class="fas fa-camera"></i>
+                </div>
+                <div class="info-content">
+                  <h4>Service</h4>
+                  <p>Photography</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <i class="fas fa-tag"></i>
+                </div>
+                <div class="info-content">
+                  <h4>Categories</h4>
+                  <p>Wedding</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="social-share">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-behance"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>&copy; 2023 Photography Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function toggleMenu() {
+        
+        console.log("Menu toggled");
+      }
+
+    
+      document.addEventListener("DOMContentLoaded", function () {
+        const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+        accordionHeaders.forEach((header) => {
+          header.addEventListener("click", function () {
+            const icon = this.querySelector(".accordion-icon");
+
+          
+            if (icon.style.transform === "rotate(-90deg)") {
+              icon.style.transform = "rotate(0deg)";
+            } else {
+              icon.style.transform = "rotate(-90deg)";
+            }
+
+            
+          });
+        });
+
+        
+        const shareButton = document.querySelector(".share-button");
+        if (shareButton) {
+          shareButton.addEventListener("click", function () {
+        
+            alert("Share this wedding photography project!");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
